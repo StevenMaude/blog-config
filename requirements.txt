@@ -122,9 +122,9 @@ packaging==24.2 \
     --hash=sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759 \
     --hash=sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f
     # via build
-pelican==4.10.2 \
-    --hash=sha256:04932e82dc7542bae7f1830710978836ca00608aa4ece7206dc13185a08c4562 \
-    --hash=sha256:534b3c279b9630a006b5687ea6e8e6113ca17c64ac45f4328cf66bf0be367bdf
+pelican==4.11.0 \
+    --hash=sha256:aca6993f6b8a03a20f6828471089cb0504a4dca71e0d30b341fa80ab65668fa4 \
+    --hash=sha256:b90234487b818d391733acc1306b785934009749b1fc112b879df9bd89478bd8
     # via
     #   -r requirements.in
     #   i18n-subsites
