@@ -137,9 +137,9 @@ pelican-tag-cloud==1.0.1 \
     --hash=sha256:0dee042f01821b6142f43907d27e3041b19677483f94cc9bf3162c209dbdd834 \
     --hash=sha256:bf29107e7f2cd01f7710ed992dee7e5e67becb63c7de8a24719635d439f51f25
     # via -r requirements.in
-pip-tools==7.5.1 \
-    --hash=sha256:a051a94794ba52df9acad2d7c9b0b09ae001617db458a543f8287fea7b89c2cf \
-    --hash=sha256:f5ff803823529edc0e6e40c86b1aa7da7266fb1078093c8beea4e5b77877036a
+pip-tools==7.5.2 \
+    --hash=sha256:2d64d72da6a044da1110257d333960563d7a4743637e8617dd2610ae7b82d60f \
+    --hash=sha256:2fe16db727bbe5bf28765aeb581e792e61be51fc275545ef6725374ad720a1ce
     # via -r requirements.in
 pygments==2.18.0 \
     --hash=sha256:786ff802f32e91311bff3889f6e9a86e81505fe99f2735bb6d60ae0c5004f199 \
