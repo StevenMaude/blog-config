@@ -121,7 +121,9 @@ ordered-set==4.1.0 \
 packaging==24.2 \
     --hash=sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759 \
     --hash=sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f
-    # via build
+    # via
+    #   build
+    #   wheel
 pelican==4.11.0.post0 \
     --hash=sha256:0d5e9c0cc9c6713ab6c25b2c4b64844f34d9be8c8c8cc7f42c3a8aa6b3bbbe33 \
     --hash=sha256:522a26598d3555a48b8392a582843f96bc9dafd5efe16b8f6a0b292441290620
@@ -254,9 +256,9 @@ watchfiles==1.0.3 \
     --hash=sha256:f79fe7993e230a12172ce7d7c7db061f046f672f2b946431c81aff8f60b2758b \
     --hash=sha256:ffe709b1d0bc2e9921257569675674cafb3a5f8af689ab9f3f2b3f88775b960f
     # via pelican
-wheel==0.45.1 \
-    --hash=sha256:661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729 \
-    --hash=sha256:708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248
+wheel==0.46.2 \
+    --hash=sha256:33ae60725d69eaa249bc1982e739943c23b34b58d51f1cb6253453773aca6e65 \
+    --hash=sha256:3d79e48fde9847618a5a181f3cc35764c349c752e2fe911e65fa17faab9809b0
     # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
