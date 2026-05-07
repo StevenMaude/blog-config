@@ -9,3 +9,4 @@ output
 content
 *.pid
 gh-pages
+.venv/
