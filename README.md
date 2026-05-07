@@ -2,12 +2,12 @@
 
 ## Install requirements
 
-`pip install -r requirements.txt`
+`uv sync`
 
 ## Run local test server
 
-`make devserver`
+`uv run make devserver`
 
 ## Build content
 
-`make publish`
+`uv run make publish`
