@@ -9,5 +9,4 @@ dependencies = [
  "pelican-alias",
  "pelican-tag-cloud",
  "pelican-i18n-subsites",
- "pip-tools"
 ]
