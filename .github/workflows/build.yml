@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout blog-config repository
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
         with:
           submodules: recursive
 
       - name: Checkout blog content
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
         with:
           repository: StevenMaude/blog-content
           path: content
