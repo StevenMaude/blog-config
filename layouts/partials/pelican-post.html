@@ -29,6 +29,14 @@
   {{- $body := strings.TrimPrefix $header $raw -}}
   {{- $body = replaceRE `\{static\}/` "/" $body -}}
   {{- $body = replaceRE `\{filename\}\.\./[0-9]{4}/([^) \r\n]+)\.md` `/posts/$1/` $body -}}
+  {{- $admonitions := findRESubmatch `(?m)^!!![ \t]+([[:alnum:]_-]+)[^\r\n]*\r?\n((([ \t]{4,}[^\r\n]*|[ \t]*)\r?\n)*)` $body -}}
+  {{- range $admonitions -}}
+    {{- $match := index . 0 -}}
+    {{- $class := urlize (index . 1) -}}
+    {{- $content := index . 2 | replaceRE `(?m)^ {4}` "" | strings.TrimSpace | markdownify -}}
+    {{- $replacement := printf "<div class=\"admonition %s\">\n%s\n</div>" $class $content -}}
+    {{- $body = replace $body $match $replacement -}}
+  {{- end -}}
   {{- $post = dict "title" $title "date" $date "tags" $tags "summary" $summary "body" $body -}}
 {{- end -}}
 {{- return $post -}}

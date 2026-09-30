@@ -11,3 +11,43 @@
     position: relative;
     z-index: 1;
 }
+
+.post-entry,
+.post-entry:hover,
+.post-entry:focus-within,
+.post-entry:active {
+    transform: none;
+    transition: none;
+    border-color: var(--border);
+}
+
+.post-content .article-image,
+.post-content .article-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5em auto;
+}
+
+.post-content .article-figure {
+    margin: 1.5em 0;
+}
+
+.post-content .article-figure figcaption {
+    text-align: center;
+}
+
+.post-content .admonition.article-edit {
+    margin: 1.5em 0;
+    padding: 0.25em 1em;
+    background: var(--code-bg);
+    border-inline-start: 4px solid var(--primary);
+}
+
+.post-content pre::before,
+.post-content pre::after,
+.post-content pre code::before,
+.post-content pre code::after {
+    content: none !important;
+    display: none !important;
+}
