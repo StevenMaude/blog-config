@@ -28,6 +28,7 @@ env = "production"
 author = "Steven Maude"
 DateFormat = "2006-01-02"
 images = ["images/extra/site_open_graph.png"]
+hideFooter = true
 
 [params.homeInfoParams]
 Title = "Steven Maude's blog"
@@ -76,6 +77,10 @@ target = "assets"
 [[module.mounts]]
 source = "content"
 target = "content"
+
+[[module.mounts]]
+source = "content/pages/about_me.md"
+target = "content/about.md"
 
 [[module.mounts]]
 source = "content/images"

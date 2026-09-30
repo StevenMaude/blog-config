@@ -1,6 +1,5 @@
 {{- $page := .page -}}
 {{- $post := .post -}}
-{{- $date := substr $post.date 0 10 -}}
 <article class="post-entry">
   <header class="entry-header">
     <h2 class="entry-hint-parent">{{ $post.title }}</h2>
@@ -9,9 +8,17 @@
     <div class="entry-content"><p>{{ . }}</p></div>
   {{- end }}
   <footer class="entry-footer">
-    <time datetime="{{ $date }}">{{ $date }}</time>
-    {{- range $post.tags }}
-      <a class="post-tag" href="{{ printf "/tags/#%s" (urlize .) | relURL }}">{{ . }}</a>
+    {{- with $post.date }}
+      {{- $date := substr . 0 10 }}
+      <span class="post-meta-item"><span class="post-meta-label">Published</span> <time datetime="{{ $date }}">{{ $date }}</time></span>
+    {{- end }}
+    {{- with $post.modified }}
+      {{- $date := substr . 0 10 }}
+      <span class="post-meta-item"><span class="post-meta-label">Modified</span> <time datetime="{{ $date }}">{{ $date }}</time></span>
+    {{- end }}
+    {{- range $index, $tag := $post.tags }}
+      {{- if $index }}<span class="post-tag-separator" aria-hidden="true">·</span>{{ end }}
+      <a class="post-tag" href="{{ printf "/tags/#%s" (urlize $tag) | relURL }}">{{ $tag }}</a>
     {{- end }}
   </footer>
   <a class="entry-link" aria-label="post link to {{ $post.title | plainify }}" href="{{ $page.RelPermalink }}"></a>

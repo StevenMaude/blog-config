@@ -1,14 +1,23 @@
 {{- $raw := strings.TrimPrefix "\ufeff" .RawContent -}}
-{{- $post := dict "title" .Title "date" (.Date.Format "2006-01-02 15:04") "tags" (slice) "summary" "" "body" $raw -}}
+{{- $date := "" -}}
+{{- if not .Date.IsZero -}}
+  {{- $date = .Date.Format "2006-01-02 15:04" -}}
+{{- end -}}
+{{- $post := dict "title" .Title "date" $date "modified" "" "tags" (slice) "summary" "" "body" $raw -}}
 {{- $headers := findRE `(?s)\ATitle:[^\r\n]*(\r?\n[^\r\n]+)*\r?\n\r?\n` $raw 1 -}}
 {{- if gt (len $headers) 0 -}}
   {{- $header := index $headers 0 -}}
   {{- $titleLines := findRE `(?m)^Title:[ \t]*[^\r\n]*` $header 1 -}}
   {{- $title := replaceRE `^Title:[ \t]*` "" (index $titleLines 0) | strings.TrimSpace -}}
   {{- $dateLines := findRE `(?m)^Date:[ \t]*[^\r\n]*` $header 1 -}}
-  {{- $date := $.Date.Format "2006-01-02 15:04" -}}
+  {{- $date := $date -}}
   {{- if gt (len $dateLines) 0 -}}
     {{- $date = replaceRE `^Date:[ \t]*` "" (index $dateLines 0) | strings.TrimSpace -}}
+  {{- end -}}
+  {{- $modified := "" -}}
+  {{- $modifiedLines := findRE `(?m)^Modified:[ \t]*[^\r\n]*` $header 1 -}}
+  {{- if gt (len $modifiedLines) 0 -}}
+    {{- $modified = replaceRE `^Modified:[ \t]*` "" (index $modifiedLines 0) | strings.TrimSpace -}}
   {{- end -}}
   {{- $tagLines := findRE `(?m)^Tags:[ \t]*[^\r\n]*` $header 1 -}}
   {{- $tags := slice -}}
@@ -37,6 +46,6 @@
     {{- $replacement := printf "<div class=\"admonition %s\">\n%s\n</div>" $class $content -}}
     {{- $body = replace $body $match $replacement -}}
   {{- end -}}
-  {{- $post = dict "title" $title "date" $date "tags" $tags "summary" $summary "body" $body -}}
+  {{- $post = dict "title" $title "date" $date "modified" $modified "tags" $tags "summary" $summary "body" $body -}}
 {{- end -}}
 {{- return $post -}}

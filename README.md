@@ -55,10 +55,13 @@ pages; PaperMod remains a pinned submodule:
 | `params.DateFormat` | Keep the existing year-month-day date display. |
 | `markup.goldmark.renderer.unsafe` | Allow migrated posts' existing inline HTML to render. Only use trusted blog content with this enabled. |
 | `markup.highlight` | Keep Pelican's Monokai code highlighting through Hugo's built-in highlighter. |
-| `module.mounts` | Restore Hugo's default project mounts, expose `content/images` at `/images/`, and mount this repository's archive page independently of the external content checkout. |
+| `module.mounts` | Restore Hugo's default project mounts, expose `content/images` at `/images/`, map the legacy About page to `/about/`, and mount this repository's archive page independently of the external content checkout. |
 | `enableRobotsTXT` | Have Hugo generate the crawler guidance file for the published site. |
 
-The PaperMod submodule is not modified. Project-level layouts adapt Pelican's
-metadata, admonitions, tags, image paths, and internal post links; the small
-extended stylesheet restores image positioning and paragraph spacing, removes
-post-card movement, and reduces the home banner's excess height.
+The PaperMod submodule remains pinned and unmodified. Project-level layouts
+adapt Pelican metadata, admonitions, tags, image paths, and internal post links;
+add the legacy About route, a styled 404 page, labeled dates, and a credit-free
+footer; and replace the theme's deprecated language-property references. The
+extended stylesheet restores image positioning and paragraph spacing, aligns
+lists, styles blockquotes, removes post-card movement, and reduces the home
+banner's excess height.
