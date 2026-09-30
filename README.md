@@ -44,7 +44,7 @@ pages; PaperMod remains a pinned submodule:
 
 | Hugo setting | Pelican setting or reason |
 | --- | --- |
-| `baseURL`, `title`, `locale`, `timeZone`, `params.author` | Retain the published domain, site name, English content, London timezone, and author. The production base URL replaces the development/publish split in `pelicanconf.py` and `publishconf.py`. |
+| `baseURL`, `title`, `languageCode`, `timeZone`, `params.author` | Retain the published domain, site name, English content, London timezone, and author. The production base URL replaces the development/publish split in `pelicanconf.py` and `publishconf.py`. |
 | `theme = "PaperMod"` and submodule pin | Use the stock PaperMod v8.0 theme at a fixed commit so theme updates are explicit and reversible. |
 | `mainSections`, `pagination.pagerSize` | Show posts on the home page and retain Pelican's ten-post page size. |
 | `permalinks.posts` | Keep individual `/posts/{filename}` article paths. |
@@ -61,7 +61,6 @@ pages; PaperMod remains a pinned submodule:
 The PaperMod submodule remains pinned and unmodified. Project-level layouts
 adapt Pelican metadata, admonitions, tags, image paths, and internal post links;
 add the legacy About route, a styled 404 page, labeled dates, and a credit-free
-footer; and replace the theme's deprecated language-property references. The
-extended stylesheet restores image positioning and paragraph spacing, aligns
-lists, styles blockquotes, removes post-card movement, and reduces the home
-banner's excess height.
+footer. The extended stylesheet restores image positioning and paragraph
+spacing, aligns lists, styles blockquotes, removes post-card movement, and
+reduces the home banner's excess height.
