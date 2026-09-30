@@ -1,0 +1,6 @@
+.git
+**/.git
+.venv
+output
+public
+resources/_gen

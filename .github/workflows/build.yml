@@ -4,6 +4,12 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -22,12 +28,5 @@ jobs:
           path: content
           submodules: recursive
 
-      - name: Setup uv
-        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
-
-      - name: Install packages
-        run: uv sync --locked
-
-      - name: Build site
-        run: |
-          uv run make publish
+      - name: Build Docker image
+        run: docker build --pull --tag blog-config:ci .

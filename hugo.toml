@@ -1,0 +1,93 @@
+baseURL = "https://www.stevenmaude.co.uk/"
+languageCode = "en"
+title = "stevenmaude.co.uk"
+theme = "PaperMod"
+timeZone = "Europe/London"
+enableRobotsTXT = true
+rssLimit = 10
+mainSections = ["posts"]
+
+[pagination]
+pagerSize = 10
+
+[permalinks]
+posts = "/posts/:slug/"
+
+[permalinks.term]
+tags = "/tag/:slug/"
+categories = "/category/:slug/"
+authors = "/author/:slug/"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+author = "authors"
+
+[params]
+env = "production"
+author = "Steven Maude"
+DateFormat = "2006-01-02"
+images = ["images/extra/site_open_graph.png"]
+
+[params.homeInfoParams]
+Title = "Steven Maude's blog"
+Content = "Words and stuff."
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/StevenMaude"
+
+[[menu.main]]
+name = "Posts"
+url = "/posts/"
+weight = 10
+
+[[menu.main]]
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 30
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+noClasses = true
+style = "monokai"
+
+[module]
+[[module.mounts]]
+source = "archetypes"
+target = "archetypes"
+
+[[module.mounts]]
+source = "assets"
+target = "assets"
+
+[[module.mounts]]
+source = "content"
+target = "content"
+
+[[module.mounts]]
+source = "content/images"
+target = "static/images"
+
+[[module.mounts]]
+source = "data"
+target = "data"
+
+[[module.mounts]]
+source = "i18n"
+target = "i18n"
+
+[[module.mounts]]
+source = "layouts"
+target = "layouts"
+
+[[module.mounts]]
+source = "static"
+target = "static"

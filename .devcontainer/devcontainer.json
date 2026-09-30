@@ -1,0 +1,13 @@
+{
+  "name": "Hugo PaperMod blog",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [1313],
+  "portsAttributes": {
+    "1313": {
+      "label": "Hugo development server",
+      "onAutoForward": "notify"
+    }
+  }
+}
