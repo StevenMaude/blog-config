@@ -1,3 +1,6 @@
 [submodule "theme/pelican-bootstrap3"]
 	path = theme/pelican-bootstrap3
 	url = git@github.com:StevenMaude/pelican-bootstrap3-sm.git
+[submodule "themes/PaperMod"]
+	path = themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod.git
