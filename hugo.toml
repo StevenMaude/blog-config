@@ -5,6 +5,10 @@ theme = "PaperMod"
 timeZone = "Europe/London"
 enableRobotsTXT = true
 mainSections = ["posts"]
+relativeURLs = true
+canonifyURLs = false
+enableEmoji = true
+enableGitInfo = true
 
 [pagination]
 pagerSize = 10
@@ -14,6 +18,14 @@ env = "production"
 author = "Steven Maude"
 DateFormat = "2006-01-02"
 images = ["images/extra/site_open_graph.png"]
+
+ShowReadingTime = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = true
 
 [module]
 [[module.mounts]]
