@@ -11,7 +11,7 @@ mainSections = ["posts"]
 pagerSize = 10
 
 [permalinks]
-posts = "/posts/:slug/"
+posts = "/posts/:filename/"
 
 [permalinks.term]
 tags = "/tag/:slug/"

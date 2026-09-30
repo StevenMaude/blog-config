@@ -27,8 +27,11 @@ the site. Open <http://localhost:1313>. This server is intended for development
 and preview, not production hosting. For production, build the static site with
 `hugo --gc --minify --environment production` and deploy the generated `public/`
 directory to a static host. The dev container uses the same pinned Hugo version;
-run `hugo server --bind 0.0.0.0` there and open the forwarded port 1313. To
-build without Docker, install Hugo Extended 0.165.0 and run
+run `./devserver.sh` there and open the forwarded port 1313. The script uses the
+Codespaces forwarded hostname when available and localhost otherwise. Legacy
+Pelican-format post metadata is handled by the Hugo templates, and posts use
+their filenames for individual `/posts/` URLs. To build without Docker, install
+Hugo Extended 0.165.0 and run
 `hugo --gc --minify --environment production`.
 
 ## Configuration notes

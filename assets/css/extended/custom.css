@@ -1,0 +1,4 @@
+.first-entry.home-info {
+    min-height: 0;
+    margin-bottom: var(--gap);
+}

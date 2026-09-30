@@ -1,0 +1,10 @@
+{{- $raw := .RawContent -}}
+{{- $post := dict "title" .Title "body" $raw -}}
+{{- $firstLine := index (split $raw "\n") 0 -}}
+{{- if hasPrefix $firstLine "Title:" -}}
+  {{- $titleLine := index (findRE `(?m)^Title:[ \t]*[^\r\n]*` $raw 1) 0 -}}
+  {{- $title := strings.TrimSpace (replaceRE `^Title:[ \t]*` "" $titleLine) -}}
+  {{- $body := replaceRE `(?s)\ATitle:[^\r\n]*\r?\n(?:[A-Za-z][A-Za-z0-9_-]*:[^\r\n]*\r?\n)*\r?\n` "" $raw -}}
+  {{- $post = dict "title" $title "body" $body -}}
+{{- end -}}
+{{- return $post -}}
