@@ -61,6 +61,7 @@ pages; PaperMod remains a pinned submodule:
 The PaperMod submodule remains pinned and unmodified. Project-level layouts
 adapt Pelican metadata, admonitions, tags, image paths, and internal post links;
 add the legacy About route, a styled 404 page, labeled dates, and a credit-free
-footer. The extended stylesheet restores image positioning and paragraph
-spacing, aligns lists, styles blockquotes, removes post-card movement, and
-reduces the home banner's excess height.
+footer. The extended stylesheet restores image positioning, keeps paragraph and
+list spacing consistent, makes in-post links visible, removes post-card
+movement, and reduces the home banner's excess height while leaving PaperMod's
+heading and blockquote styles intact.

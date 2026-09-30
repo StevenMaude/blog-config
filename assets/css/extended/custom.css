@@ -3,35 +3,22 @@
     margin-bottom: var(--gap);
 }
 
-.post-content p {
+.post-content p,
+.post-content ul,
+.post-content ol {
     margin-bottom: 1.5em;
 }
 
-.post-content h1,
-.post-content h2,
-.post-content h3,
-.post-content h4,
-.post-content h5,
-.post-content h6 {
-    margin: 1.5em 0;
+.post-content a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-color: var(--primary);
+    text-underline-offset: 0.15em;
 }
 
 .post-content ul,
 .post-content ol {
     padding-inline-start: 1.5em;
-}
-
-.post-content blockquote {
-    margin: 1.5em 0;
-    padding: 0.75em 1.25em;
-    border-inline-start: 4px solid var(--primary);
-    border-radius: 0 4px 4px 0;
-    background: var(--code-bg);
-    color: var(--content);
-}
-
-.post-content blockquote p:last-child {
-    margin-bottom: 0;
 }
 
 .post-meta-item {
