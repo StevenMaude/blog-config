@@ -1,10 +1,34 @@
-{{- $raw := .RawContent -}}
-{{- $post := dict "title" .Title "body" $raw -}}
-{{- $firstLine := index (split $raw "\n") 0 -}}
-{{- if hasPrefix $firstLine "Title:" -}}
-  {{- $titleLine := index (findRE `(?m)^Title:[ \t]*[^\r\n]*` $raw 1) 0 -}}
-  {{- $title := strings.TrimSpace (replaceRE `^Title:[ \t]*` "" $titleLine) -}}
-  {{- $body := replaceRE `(?s)\ATitle:[^\r\n]*\r?\n(?:[A-Za-z][A-Za-z0-9_-]*:[^\r\n]*\r?\n)*\r?\n` "" $raw -}}
-  {{- $post = dict "title" $title "body" $body -}}
+{{- $raw := strings.TrimPrefix "\ufeff" .RawContent -}}
+{{- $post := dict "title" .Title "date" (.Date.Format "2006-01-02 15:04") "tags" (slice) "summary" "" "body" $raw -}}
+{{- $headers := findRE `(?s)\ATitle:[^\r\n]*(\r?\n[^\r\n]+)*\r?\n\r?\n` $raw 1 -}}
+{{- if gt (len $headers) 0 -}}
+  {{- $header := index $headers 0 -}}
+  {{- $titleLines := findRE `(?m)^Title:[ \t]*[^\r\n]*` $header 1 -}}
+  {{- $title := replaceRE `^Title:[ \t]*` "" (index $titleLines 0) | strings.TrimSpace -}}
+  {{- $dateLines := findRE `(?m)^Date:[ \t]*[^\r\n]*` $header 1 -}}
+  {{- $date := $.Date.Format "2006-01-02 15:04" -}}
+  {{- if gt (len $dateLines) 0 -}}
+    {{- $date = replaceRE `^Date:[ \t]*` "" (index $dateLines 0) | strings.TrimSpace -}}
+  {{- end -}}
+  {{- $tagLines := findRE `(?m)^Tags:[ \t]*[^\r\n]*` $header 1 -}}
+  {{- $tags := slice -}}
+  {{- if gt (len $tagLines) 0 -}}
+    {{- $tagText := replaceRE `^Tags:[ \t]*` "" (index $tagLines 0) -}}
+    {{- range split $tagText "," -}}
+      {{- $tag := strings.TrimSpace . -}}
+      {{- if ne $tag "" -}}
+        {{- $tags = append $tag $tags -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $summary := "" -}}
+  {{- $summaryLines := findRE `(?m)^Summary:[^\r\n]*(\r?\n[ \t]+[^\r\n]*)*` $header 1 -}}
+  {{- if gt (len $summaryLines) 0 -}}
+    {{- $summary = index $summaryLines 0 | replaceRE `^Summary:[ \t]*` "" | replaceRE `\r?\n[ \t]+` " " | strings.TrimSpace -}}
+  {{- end -}}
+  {{- $body := strings.TrimPrefix $header $raw -}}
+  {{- $body = replaceRE `\{static\}/` "/" $body -}}
+  {{- $body = replaceRE `\{filename\}\.\./[0-9]{4}/([^) \r\n]+)\.md` `/posts/$1/` $body -}}
+  {{- $post = dict "title" $title "date" $date "tags" $tags "summary" $summary "body" $body -}}
 {{- end -}}
 {{- return $post -}}

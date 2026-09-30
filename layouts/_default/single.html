@@ -3,6 +3,13 @@
   <article class="post-single">
     <header class="post-header">
       <h1 class="post-title entry-hint-parent">{{ $post.title }}</h1>
+      <div class="post-meta">
+        {{- $date := substr $post.date 0 10 }}
+        <time datetime="{{ $date }}">{{ $date }}</time>
+        {{- range $post.tags }}
+          <a href="{{ printf "/tags/#%s" (urlize .) | relURL }}">{{ . }}</a>
+        {{- end }}
+      </div>
     </header>
     <div class="post-content">
       {{- $body := $post.body | markdownify -}}

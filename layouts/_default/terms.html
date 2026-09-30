@@ -1,0 +1,47 @@
+{{- define "main" }}
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+  {{- if eq .Data.Plural "tags" }}
+    {{- $entries := partial "sorted-posts.html" site.RegularPages -}}
+    {{- $tags := slice -}}
+    {{- range $entries -}}
+      {{- range .post.tags -}}
+        {{- $tags = append . $tags -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $tags = sort (uniq $tags) -}}
+    <ul class="terms-tags">
+      {{- range $tags }}
+        <li><a href="#{{ urlize . }}">{{ . }}</a></li>
+      {{- end }}
+    </ul>
+    {{- range $tags }}
+      {{- $tag := . }}
+      <section class="tag-archive">
+        <h2 id="{{ urlize $tag }}">{{ $tag }}</h2>
+        <ul>
+          {{- range $entries }}
+            {{- if in .post.tags $tag }}
+              <li>
+                <time datetime="{{ substr .post.date 0 10 }}">{{ substr .post.date 0 10 }}</time>
+                <a href="{{ .page.RelPermalink }}">{{ .post.title }}</a>
+              </li>
+            {{- end }}
+          {{- end }}
+        </ul>
+      </section>
+    {{- end }}
+  {{- else }}
+    <ul class="terms-tags">
+      {{- $type := .Type }}
+      {{- range .Data.Terms.Alphabetical }}
+        {{- $name := .Name }}
+        {{- $count := .Count }}
+        {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+          <li><a href="{{ .Permalink }}">{{ .Name }} <sup>{{ $count }}</sup></a></li>
+        {{- end }}
+      {{- end }}
+    </ul>
+  {{- end }}
+{{- end }}

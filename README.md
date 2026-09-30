@@ -28,33 +28,37 @@ and preview, not production hosting. For production, build the static site with
 `hugo --gc --minify --environment production` and deploy the generated `public/`
 directory to a static host. The dev container uses the same pinned Hugo version;
 run `./devserver.sh` there and open the forwarded port 1313. The script uses the
-Codespaces forwarded hostname when available and localhost otherwise. Legacy
-Pelican-format post metadata is handled by the Hugo templates, and posts use
-their filenames for individual `/posts/` URLs. To build without Docker, install
-Hugo Extended 0.165.0 and run
+Codespaces forwarded hostname when available and localhost otherwise. Legacy Pelican-format post metadata is handled by the Hugo templates, and posts
+use their filenames for individual `/posts/` URLs. The menu includes a
+reverse-chronological `/archives/` page, and `/tags/` groups posts by their
+legacy metadata tags. Pelican image and internal-post-link placeholders are
+translated during rendering. To build without Docker, install Hugo Extended
+0.165.0 and run
 `hugo --gc --minify --environment production`.
 
 ## Configuration notes
 
-`hugo.toml` maps the old Pelican settings to Hugo while leaving PaperMod
-unmodified:
+`hugo.toml` maps the old Pelican settings to Hugo. Small project-level
+templates adapt the legacy metadata format and provide the archives and tags
+pages; PaperMod remains a pinned submodule:
 
 | Hugo setting | Pelican setting or reason |
 | --- | --- |
 | `baseURL`, `title`, `languageCode`, `timeZone`, `params.author` | Retain the published domain, site name, English content, London timezone, and author. The production base URL replaces the development/publish split in `pelicanconf.py` and `publishconf.py`. |
 | `theme = "PaperMod"` and submodule pin | Use the stock PaperMod v8.0 theme at a fixed commit so theme updates are explicit and reversible. |
 | `mainSections`, `pagination.pagerSize` | Show posts on the home page and retain Pelican's ten-post page size. |
-| `permalinks.posts` | Keep the Pelican `/posts/{slug}` article path, using Hugo's directory-style URLs. Migrated post front matter should keep aliases for older `.html` URLs. |
-| `permalinks.term`, `taxonomies` | Retain tag, category, and author archives, using the old singular `/tag/`, `/category/`, and `/author/` paths for term pages. |
+| `permalinks.posts` | Keep individual `/posts/{filename}` article paths. |
+| `permalinks.term`, `taxonomies` | Retain tag, category, and author paths. Legacy tags are rendered from post metadata on the generated tags index. |
 | `rssLimit` | Keep the production feed limit of ten entries. Hugo's stock output is RSS at its standard URL, rather than Pelican's Atom file at `feeds/all.atom.xml`. |
-| `params.homeInfoParams` | Carry over the blog banner's title and subtitle as PaperMod's home introduction; the theme's banner layout and custom Bootstrap styling are intentionally not recreated. |
+| `params.homeInfoParams` | Carry over the blog banner's title and subtitle as PaperMod's home introduction; the theme's custom Bootstrap styling is intentionally not recreated. |
 | `params.socialIcons`, `params.images`, `params.env` | Preserve the GitHub profile link and Open Graph/Twitter card metadata, including the configured site-wide social image. PaperMod generates these metadata tags without theme changes. |
 | `params.DateFormat` | Keep the existing year-month-day date display. |
 | `markup.goldmark.renderer.unsafe` | Allow migrated posts' existing inline HTML to render. Only use trusted blog content with this enabled. |
 | `markup.highlight` | Keep Pelican's Monokai code highlighting through Hugo's built-in highlighter. |
-| `module.mounts` | Restore Hugo's default project mounts and expose `content/images` at `/images/`, matching Pelican's static image paths. |
+| `module.mounts` | Restore Hugo's default project mounts, expose `content/images` at `/images/`, and mount this repository's archive page independently of the external content checkout. |
 | `enableRobotsTXT` | Have Hugo generate the crawler guidance file for the published site. |
 
-PaperMod is used as-is: Pelican-specific options such as the Bootstrap theme,
-sidebar tag cloud, custom CSS, and Atom feed filename have no equivalent in the
-stock theme/configuration and are not implemented as theme overrides.
+The PaperMod submodule is not modified. Project-level layouts adapt Pelican's
+metadata, tags, image paths, and internal post links; the small extended
+stylesheet restores paragraph spacing and reduces the home banner's excess
+height.

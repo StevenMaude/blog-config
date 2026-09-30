@@ -43,6 +43,11 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
+name = "Archives"
+url = "/archives/"
+weight = 15
+
+[[menu.main]]
 name = "Tags"
 url = "/tags/"
 weight = 20
@@ -91,3 +96,7 @@ target = "layouts"
 [[module.mounts]]
 source = "static"
 target = "static"
+
+[[module.mounts]]
+source = "site-content/archives"
+target = "content/archives"

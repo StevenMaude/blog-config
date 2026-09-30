@@ -2,3 +2,12 @@
     min-height: 0;
     margin-bottom: var(--gap);
 }
+
+.post-content p {
+    margin-bottom: 1.5em;
+}
+
+.post-entry .post-tag {
+    position: relative;
+    z-index: 1;
+}

@@ -1,7 +1,7 @@
-{{- $pages := union .RegularPages .Sections -}}
-{{- if .IsHome -}}
-  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
-  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" -}}
+{{- $entries := partial "sorted-posts.html" site.RegularPages -}}
+{{- $pages := slice -}}
+{{- range $entries -}}
+  {{- $pages = append .page $pages -}}
 {{- end -}}
 {{- $paginator := .Paginate $pages -}}
 
@@ -10,17 +10,8 @@
 {{- end }}
 
 {{- range $paginator.Pages }}
-  {{- $post := partial "pelican-post.html" . }}
-  {{- $summary := $post.body | markdownify | plainify | htmlUnescape | replaceRE `[\r\n\t ]+` " " }}
-  <article class="post-entry">
-    <header class="entry-header">
-      <h2 class="entry-hint-parent">{{ $post.title }}</h2>
-    </header>
-    {{- with $summary }}
-      <div class="entry-content"><p>{{ . | truncate 320 }}</p></div>
-    {{- end }}
-    <a class="entry-link" aria-label="post link to {{ $post.title | plainify }}" href="{{ .Permalink }}"></a>
-  </article>
+  {{- $post := partial "pelican-post.html" . -}}
+  {{- partial "post-entry.html" (dict "page" . "post" $post) }}
 {{- end }}
 
 {{- if gt $paginator.TotalPages 1 }}

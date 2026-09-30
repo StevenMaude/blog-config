@@ -1,0 +1,18 @@
+{{- $page := .page -}}
+{{- $post := .post -}}
+{{- $date := substr $post.date 0 10 -}}
+<article class="post-entry">
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">{{ $post.title }}</h2>
+  </header>
+  {{- with $post.summary }}
+    <div class="entry-content"><p>{{ . }}</p></div>
+  {{- end }}
+  <footer class="entry-footer">
+    <time datetime="{{ $date }}">{{ $date }}</time>
+    {{- range $post.tags }}
+      <a class="post-tag" href="{{ printf "/tags/#%s" (urlize .) | relURL }}">{{ . }}</a>
+    {{- end }}
+  </footer>
+  <a class="entry-link" aria-label="post link to {{ $post.title | plainify }}" href="{{ $page.RelPermalink }}"></a>
+</article>
