@@ -1,8 +1,0 @@
-{{- $posts := slice -}}
-{{- range . -}}
-  {{- if eq .Section "posts" -}}
-    {{- $post := partial "pelican-post.html" . -}}
-    {{- $posts = append (dict "page" . "post" $post "date" $post.date) $posts -}}
-  {{- end -}}
-{{- end -}}
-{{- return (sort $posts "date" "desc") -}}

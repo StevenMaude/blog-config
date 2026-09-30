@@ -1,8 +1,0 @@
-{{- define "main" }}
-  <header class="page-header">
-    <h1>{{ .Title }}</h1>
-  </header>
-  {{- range (partial "sorted-posts.html" site.RegularPages) }}
-    {{- partial "post-entry.html" (dict "page" .page "post" .post) }}
-  {{- end }}
-{{- end }}
