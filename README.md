@@ -14,18 +14,21 @@ git submodule update --init --recursive
 git clone --recurse-submodules https://github.com/StevenMaude/blog-content.git content
 ```
 
-Build and run the production image:
+Build and run the Hugo preview server in a container:
 
 ```sh
 docker build -t stevenmaude-blog .
-docker run --rm -p 8080:80 stevenmaude-blog
+docker run --rm -p 1313:1313 stevenmaude-blog
 ```
 
-The image builds with the official Hugo Extended 0.165.0 image from
-`ghcr.io/gohugoio/hugo` and serves the generated site with nginx 1.29.1. The
-dev container uses the same pinned Hugo version. In the
-dev container, run `hugo server --bind 0.0.0.0` and open the forwarded port
-1313. To build without Docker, install Hugo Extended 0.165.0 and run
+The container runs Hugo's built-in preview server from the official Hugo
+Extended 0.165.0 image at `ghcr.io/gohugoio/hugo`; no nginx is needed to preview
+the site. Open <http://localhost:1313>. This server is intended for development
+and preview, not production hosting. For production, build the static site with
+`hugo --gc --minify --environment production` and deploy the generated `public/`
+directory to a static host. The dev container uses the same pinned Hugo version;
+run `hugo server --bind 0.0.0.0` there and open the forwarded port 1313. To
+build without Docker, install Hugo Extended 0.165.0 and run
 `hugo --gc --minify --environment production`.
 
 ## Configuration notes
