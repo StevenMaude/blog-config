@@ -44,7 +44,7 @@ pages; PaperMod remains a pinned submodule:
 
 | Hugo setting | Pelican setting or reason |
 | --- | --- |
-| `baseURL`, `title`, `languageCode`, `timeZone`, `params.author` | Retain the published domain, site name, English content, London timezone, and author. The production base URL replaces the development/publish split in `pelicanconf.py` and `publishconf.py`. |
+| `baseURL`, `title`, `locale`, `timeZone`, `params.author` | Retain the published domain, site name, English content, London timezone, and author. The production base URL replaces the development/publish split in `pelicanconf.py` and `publishconf.py`. |
 | `theme = "PaperMod"` and submodule pin | Use the stock PaperMod v8.0 theme at a fixed commit so theme updates are explicit and reversible. |
 | `mainSections`, `pagination.pagerSize` | Show posts on the home page and retain Pelican's ten-post page size. |
 | `permalinks.posts` | Keep individual `/posts/{filename}` article paths. |

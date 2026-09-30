@@ -1,5 +1,5 @@
 baseURL = "https://www.stevenmaude.co.uk/"
-languageCode = "en"
+locale = "en"
 title = "stevenmaude.co.uk"
 theme = "PaperMod"
 timeZone = "Europe/London"
