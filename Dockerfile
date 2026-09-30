@@ -1,4 +1,4 @@
-FROM hugomods/hugo:exts-0.165.0 AS build
+FROM ghcr.io/gohugoio/hugo:v0.165.0 AS build
 
 WORKDIR /src
 COPY . .

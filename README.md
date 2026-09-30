@@ -21,8 +21,9 @@ docker build -t stevenmaude-blog .
 docker run --rm -p 8080:80 stevenmaude-blog
 ```
 
-The image builds with Hugo Extended 0.165.0 and serves the generated site with
-nginx 1.29.1. The dev container uses the same pinned Hugo version. In the
+The image builds with the official Hugo Extended 0.165.0 image from
+`ghcr.io/gohugoio/hugo` and serves the generated site with nginx 1.29.1. The
+dev container uses the same pinned Hugo version. In the
 dev container, run `hugo server --bind 0.0.0.0` and open the forwarded port
 1313. To build without Docker, install Hugo Extended 0.165.0 and run
 `hugo --gc --minify --environment production`.
