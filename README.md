@@ -59,6 +59,6 @@ pages; PaperMod remains a pinned submodule:
 | `enableRobotsTXT` | Have Hugo generate the crawler guidance file for the published site. |
 
 The PaperMod submodule is not modified. Project-level layouts adapt Pelican's
-metadata, tags, image paths, and internal post links; the small extended
-stylesheet restores paragraph spacing and reduces the home banner's excess
-height.
+metadata, admonitions, tags, image paths, and internal post links; the small
+extended stylesheet restores image positioning and paragraph spacing, removes
+post-card movement, and reduces the home banner's excess height.
