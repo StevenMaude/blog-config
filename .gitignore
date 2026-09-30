@@ -6,6 +6,9 @@ local
 __pycache__
 cache
 output
+public
+resources/_gen
+hugo_build.lock
 content
 *.pid
 gh-pages
